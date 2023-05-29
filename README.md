@@ -1,2 +1,2 @@
-# cogna_design_system
+# Cogna Design System
 Cogna Design System
