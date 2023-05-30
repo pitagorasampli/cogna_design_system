@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #fafafa;
+    }
+     .BrandB {
+       --contained-button-background-color: #624C92;
+       --contained-button-text-color: white;
+       --outlined-button-border: 1px solid rgba(98, 76, 146, 0.5);
+       --outlined-button-text-color: #624C92;
+       --text-button-text-color: #624C92;
+       --text-button-hover-color: rgba(98, 76, 146, 0.12);
+       --contained-button-hover-color: #4E3C74;
+       --outlined-button-hover-color: rgba(98, 76, 146, 0.12);
+     }
+    .BrandA {
+      --contained-button-background-color: #002871;
+      --contained-button-text-color: white;
+      --outlined-button-border: 1px solid rgba(0, 40, 113, 0.5);
+      --outlined-button-text-color: #002871;
+      --text-button-text-color: #002871;
+      --text-button-hover-color: rgba(0, 40, 113, 0.08);
+      --contained-button-hover-color: #001F50;
+      --outlined-button-hover-color: rgba(0, 40, 113, 0.08);;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="module">
+    import { html, render } from 'lit';
+    import '../dist/src/contained-button.js';
+    import '../dist/src/OutlinedButton.js';
+    import '../dist/src/TextButton.js';
+
+    const text = 'Button';
+    render(
+      html`
+        <div style='display: flex; justify-content: space-around'>
+          <div>
+            <text-button class='BrandB' .text=${text}></text-button>
+            <text-button class='BrandA' .text=${text}></text-button>
+            <text-button ?disabled=${true} class='BrandA' .text=${text}></text-button>
+          </div>
+          <div>
+            <contained-button class='BrandB' .text=${text}></contained-button>
+            <contained-button class='BrandA' .text=${text}></contained-button>
+            <contained-button ?disabled=${true} class='BrandA' .text=${text}></contained-button>
+          </div>
+          <div>
+            <outlined-button class='BrandB' .text=${text}></outlined-button>
+            <outlined-button class='BrandA' .text=${text}></outlined-button>
+            <outlined-button ?disabled=${true} class='BrandA' .text=${text}></outlined-button>
+          </div>
+        </div>
+      `,
+      document.querySelector('#demo')
+    );
+  </script>
+</body>
+</html>
