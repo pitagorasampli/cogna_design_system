@@ -1,18 +1,23 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import styleDictionary from 'style-dictionary';
 
+import Color from 'tinycolor2';
+
 const executeStyleDictionary = (fileName) => {
-  const StyleDictionary = styleDictionary.extend({
+ 
+  const StyleDictionary = styleDictionary.registerTransform({
+    name: 'name/composeColorName',
+    type: 'value',
+    matcher: function(prop) {
+       return prop.attributes.category === 'sofia';
+    },
+    transformer: function(prop) {
+      const hex8 = Color(prop.value).toHex8();
+      return `Color(0x${hex8})`;
+    }
+  }).extend({
     source: [fileName],
     platforms: {
-      scss: {
-        transformGroup: 'scss',
-        buildPath: 'src/styles/',
-        files: [{
-          destination: 'variables-brand2.scss',
-          format: 'scss/variables'
-        }]
-      },
       android: {
         "transforms": [
           "attribute/cti",
@@ -32,13 +37,19 @@ const executeStyleDictionary = (fileName) => {
         }]
       },
       compose: { 
+        transforms: ['attribute/cti', 
+        'name/cti/snake', 
+        'name/composeColorName'],
         transformGroup: 'compose',
         buildPath: "android_compose_tokens/src/styles/compose/",
         files: [{
           destination: "StyleDictionaryColor.kt",
           format: "compose/object",
           className: "StyleDictionaryColor",
-          packageName: "StyleDictionaryColor",
+          packageName: "br.com.cogna",
+          options: {
+            outputReferences: true
+          },
           filter: {
             attributes: {
               category: "sofia",

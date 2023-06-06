@@ -42,10 +42,20 @@ const generatePropertyName = (token) => {
     return _.camelCase(name_snake)
 }
 
+const colorNameGenerator = (attributeName, token) => {
+    this.type; `value`,
+    this.matcher; (token) => token.attribute.category = attributeName,
+    this.transformer; (prop) =>{
+        const hex8 = Color(prop.value).toHex8();
+        return `Color(0x${hex8})`;
+    }
+}
+
 module.exports = {
     convertColorValue,
     fileNameGenerator,
     filterLightColors,
     filterRefsColors,
-    generatePropertyName
+    generatePropertyName,
+    colorNameGenerator
 }
