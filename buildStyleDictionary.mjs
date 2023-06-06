@@ -19,28 +19,19 @@ const executeStyleDictionary = (fileName) => {
           "name/cti/snake",
           "color/hex8android",
           "size/sp",
-          "size/dp",
-          "custom/category/lowercase"
+          "size/dp"
         ],
         transformGroup: 'android',
         buildPath: 'android_tokens/src/styles/android/',
         files: [{
           destination: 'font_dimens.xml',
           format: "android/fontDimens"
-        },{
+        }, {
           destination: "colors.xml",
           format: "android/colors"
         }]
       },
-      compose: {
-        "transforms": [
-          "attribute/cti",
-          "name/cti/snake",
-          "color/hex8android",
-          "size/sp",
-          "size/dp",
-          "custom/category/lowercase"
-        ],
+      compose: { 
         transformGroup: 'compose',
         buildPath: "android_compose_tokens/src/styles/compose/",
         files: [{
@@ -50,10 +41,10 @@ const executeStyleDictionary = (fileName) => {
           packageName: "StyleDictionaryColor",
           filter: {
             attributes: {
-              category: "color"
+              category: "sofia",
             }
           }
-        },{
+        }, {
           destination: "StyleDictionarySize.kt",
           format: "compose/object",
           className: "StyleDictionarySize",
