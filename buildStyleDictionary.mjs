@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import StyleDictionary from 'style-dictionary';
 
-const executeStyleDictionary = (fileName) => {
+const executeStyleDictionary = () => {
   // const StyleDictionary = styleDictionary.extend({
   //   source: [fileName],
   //   platforms: {
@@ -36,11 +36,11 @@ console.log('\n==============================================');
 StyleDictionary.registerTransform({
   name: 'size/px', // notice: the name is an override of an existing predefined method (yes, you can do it)
   type: 'value',
-  matcher: function(token) {
+  matcher(token) {
       // this is an example of a possible filter (based on the "cti" values) to show how a "matcher" works
       return token.attributes.category === 'font' || token.attributes.category === 'margin';
   },
-  transformer: function(token) {
+  transformer(token) {
       return `${token.value}px`;
   }
 });
@@ -48,11 +48,11 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerTransform({
   name: 'ratio/%',
   type: 'value',
-  matcher: function(token) {
+  matcher(token) {
       // here we are using a custom attribute, declared in the token, to match the values where apply the transform
       return token.group === 'ratio';
   },
-  transformer: function(token) {
+  transformer(token) {
       return `${Math.floor(100 * token.value)}%`;
   }
 });
@@ -60,10 +60,10 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerTransform({
   name: 'hexRGB/hexARGB',
   type: 'value',
-  matcher: function(token) {
+  matcher(token) {
       return token.group === 'color';
   },
-  transformer: function(token) {
+  transformer(token) {
       // for sake of simplicity, in this example we assume colors are always in the format #xxxxxx
       return token.value.replace(/^#/,'#FF');
   }
@@ -75,7 +75,7 @@ StyleDictionary.registerTransform({ // this is a silly example, to show how you 
   name: 'name/squiggle',
   type: 'name',
   // notice: if you don't specify a matcher, the transformation will be applied to all the tokens
-  transformer: function(token) {
+  transformer(token) {
       return token.path.join('~');
   }
 });
@@ -96,7 +96,7 @@ StyleDictionary.registerTransformGroup({
   name: 'custom/scss',
   // this is to show one possibility for adding a few transforms to a pre-defined group
   // (however, we suggest to use the previous approach, which is more explicit and clear)
-  transforms: StyleDictionary.transformGroup['scss'].concat(['size/px', 'ratio/%'])
+  transforms: StyleDictionary.transformGroup.scss.concat(['size/px', 'ratio/%'])
 });
 
 
