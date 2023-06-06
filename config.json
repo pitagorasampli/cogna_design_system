@@ -1,0 +1,28 @@
+{
+  "source": [
+    "./src/jsonTokens/output.json"
+  ],
+  "platforms": {
+    "scss": {
+      "transformGroup": "scss",
+      "prefix": "sd",
+      "buildPath": "src/styles/",
+      "files": [
+        {
+          "destination": "variables-brand2.scss",
+          "format": "scss/variables"
+        }
+      ]
+    },
+    "js": {
+      "transformGroup": "js",
+      "buildPath": "./src/style-dictionary-dist/",
+      "files": [
+        {
+          "destination": "./src/testJS/variables.js",
+          "format": "javascript/es6"
+        }
+      ]
+    }
+  }
+}
