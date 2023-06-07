@@ -46,7 +46,7 @@ const executeStyleDictionary = (fileName) => {
           destination: "StyleDictionaryColor.kt",
           format: "compose/object",
           className: "StyleDictionaryColor",
-          packageName: "br.com.cogna",
+          packageName: "br.com.cogna.cogna_design_system",
           options: {
             outputReferences: true
           },
